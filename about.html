@@ -1,0 +1,55 @@
+<!--
+about.html
+The Baseball Map
+Alex Greene
+06/21/15
+-->
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Baseball Team & Stadium Map</title>
+  <meta name="description" content="Made by fans for fans, The Baseball Map displays the locations of all professional baseball teams. It also allows fans to explore teams and landmarks throughout baseball's history.">
+  <meta name="author" content="Alex Greene">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsa0YRB6JLyF5M9whV0ILd55lBPg-o8OM"></script>
+  <script type="text/javascript" src="script.js"></script>
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div id="uiB">
+    <div id="nav">
+      <h1>The Baseball Map</h1>
+      <a href="index.html">< back to the map</a>
+    </div>
+  </div>
+  <div id="about">
+    <h2>FAQ</h2>
+    <h3>What is 'The Baseball Map'?</h3>
+    <p>It's simply a map that displays all of the professional baseball teams & stadiums in the United States. It also displays locations relating to baseball history, such as old stadiums, museums, and even filming locations.</p>
+    <h3>Just the United States?</h3>
+    <p>Don't worry, a good baseball team map should have every good baseball team! As the site grows, we'll be adding more teams, both in and and outside of the United States. Wherever you are, we want you to be find nearby baseball teams and local baseball history through our map.</p>
+    <h3>My favorite team isn't on your dang map! Do you hate me?</h3>
+    <p> No silly, we don't hate you. We just don't have enough hands to input all of these teams- there's a lot of them you know. That's where you come in to play! Navigate to the 'contribute' tab above the map and submit teams/locations/corrections to us directly. We're excited to add your contributions to the map ASAP.</p>
+    <h3>Send Us Feedback, Please!</h3>
+    <p>I will personally read every feedback submission, so make sure you give me the juicy details!<br>
+      Alternatively, if you'd like send me an email directly at: <span style="color: rgb(53, 114, 172)">coach@thebaseballmap.com</span>, I promise I'll respond very quickly.
+
+    <form id="feedback" method="post" action="send_feedback.php">
+      <input name="favorite_team" type="text" placeholder="Your favorite team?"/><br />
+      <input name="email" type="text" placeholder="Email (optional)"/><br />
+      <textarea name="message" rows="5" cols="80" placeholder="Spill the beans, all star."></textarea><br />
+    <input type="submit" />
+  </form>
+
+
+  </div>
+</body>
+
+</html>

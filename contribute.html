@@ -1,0 +1,64 @@
+<!--
+contribute.html
+The Baseball Map
+Alex Greene
+06/21/15
+-->
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Baseball Team & Stadium Map</title>
+  <meta name="description" content="Made by fans for fans, The Baseball Map displays the locations of all professional baseball teams. It also allows fans to explore teams and landmarks throughout baseball's history.">
+  <meta name="author" content="Alex Greene">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsa0YRB6JLyF5M9whV0ILd55lBPg-o8OM"></script>
+  <script type="text/javascript" src="script.js"></script>
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  </script>
+</head>
+
+<body>
+  <div id="uiB">
+    <div id="nav">
+      <h1>The Baseball Map</h1>
+      <a href="index.html">< back to the map</a>
+    </div>
+  </div>
+  <div id="about">
+    <h2>Help make the best map better!</h2>
+    <h3>Submit a location</h3>
+    <p>The Baseball Map has locations for the stadiums of every active professional baseball team in the United States (and then some!), but also a number of other locations, including stadiums of 
+    past teams in baseball history, museums, landmarks, and more. While there aren't likely to be large numbers of new stadiums built each year, there are a ton of other locations we need your
+    help collecting! Any type of baseball related location is welcome, whether it be a dirt field where baseball was played on for one sunday afternoon in 1890, or the filming location of an
+    awesome (or not awesome...) baseball movie. Submit as many as you'd like, we can't wait to add your suggestions to the map!</p>
+
+    <form id="feedback" method="post" action="send_submission.php">
+      <input name="location_name" type="text" placeholder="location name"/><br />
+      <input name="latitude" type="text" placeholder="latitude"/><br />
+      <input name="longitude" type="text" placeholder="longitude"/><br />
+      <textarea name="description" rows="5" cols="80" placeholder="Short description (1-2 Sentences)"></textarea><br />
+      <input name="email" type="text" placeholder="Email (optional)"/><br />
+      <input type="submit" />
+    </form>
+
+    <h3>Submit a correction or bug</h3>
+    <p>The Baseball Map is a side project for now, so the information might not be 100% accurate, and grammatical errors are bound to be hidden in the map. Please help us fix these by pointing
+    them out to us. We want The Baseball Map viewing experience to be as fault free as possible. Anyone that submits a fix is player of the year in our books.</p>
+
+    <form id="feedback" method="post" action="send_correction.php">
+      <textarea name="message" rows="5" cols="80" placeholder="What's up doc?"></textarea><br />
+      <input name="email" type="text" placeholder="Email (optional)"/><br />
+      <input type="submit" />
+    </form>
+
+
+  </div>
+</body>
+
+</html>

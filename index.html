@@ -1,0 +1,157 @@
+<!--
+index.html
+The Baseball Map
+Alex Greene
+06/21/15
+-->
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Baseball Team & Stadium Map</title>
+  <meta name="description" content="Made by fans for fans, The Baseball Map displays the locations of all professional baseball stadiums. It also allows fans to explore teams and landmarks throughout baseball's history.">
+  <meta name="author" content="Alex Greene">
+  <meta name="keywords" content="baseball,map,teams,stadiums,mlb,visulaization,fans,hitsoric,landmarks,roadtrip">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsa0YRB6JLyF5M9whV0ILd55lBPg-o8OM"></script>
+  <script type="text/javascript" src="script.js"></script>
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58660795-2', 'auto');
+  ga('send', 'pageview');
+  </script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+  <div id="ui">
+    <div id="nav">
+      <h1>The Baseball Map</h1>
+      <a href="about.html">Learn More</a>
+      <a href="contribute.html">Contribute</a>
+      <a href="stats.html">Statistics</a>
+      <a id="filterLink" href="#" onclick="toggleToggles()">Filter + Key  ╳</a>
+
+      <input id="address" type="search" placeholder="search by location" onfocus="this.value='';" onsearch="searchForLocation()">
+    </div>
+
+    <div id="filterBar">
+
+        <div class="mlbswitch">
+          <input type="checkbox" onclick="toggleMLB()" name="mlbswitch" class="mlbswitch-checkbox" id="mymlbswitch" checked>
+          <label class="mlbswitch-label" for="mymlbswitch">
+            <span class="mlbswitch-inner"></span>
+            <span class="mlbswitch-switch"></span>
+          </label>
+        </div>
+
+        <div class="aaaswitch">
+          <input type="checkbox" name="aaaswitch" onclick="toggleAAA()" class="aaaswitch-checkbox" id="myaaaswitch" checked>
+          <label class="aaaswitch-label" for="myaaaswitch">
+            <span class="aaaswitch-inner"></span>
+            <span class="aaaswitch-switch"></span>
+          </label>
+        </div>
+
+        <div class="aaswitch">
+          <input type="checkbox" name="aaswitch" onclick="toggleAA()" class="aaswitch-checkbox" id="myaaswitch" checked>
+          <label class="aaswitch-label" for="myaaswitch">
+            <span class="aaswitch-inner"></span>
+            <span class="aaswitch-switch"></span>
+          </label>
+        </div>
+
+        <div class="aswitch">
+          <input type="checkbox" name="aswitch" onclick="toggleA()" class="aswitch-checkbox" id="myaswitch" checked>
+          <label class="aswitch-label" for="myaswitch">
+            <span class="aswitch-inner"></span>
+            <span class="aswitch-switch"></span>
+          </label>
+        </div>
+
+        <div class="rookieswitch">
+          <input type="checkbox" name="rookieswitch" onclick="toggleRookie()" class="rookieswitch-checkbox" id="myrookieswitch" checked>
+          <label class="rookieswitch-label" for="myrookieswitch">
+            <span class="rookieswitch-inner"></span>
+            <span class="rookieswitch-switch"></span>
+          </label>
+        </div>
+
+        <div class="independentswitch">
+          <input type="checkbox" onclick="toggleIndependent()" name="independentswitch" class="independentswitch-checkbox" id="myindependentswitch" checked>
+          <label class="independentswitch-label" for="myindependentswitch">
+            <span class="independentswitch-inner"></span>
+            <span class="independentswitch-switch"></span>
+          </label>
+        </div>
+
+        <div class="locationsswitch">
+          <input type="checkbox" name="locationsswitch" onclick="toggleLocations()" class="locationsswitch-checkbox" id="mylocationsswitch" checked>
+          <label class="locationsswitch-label" for="mylocationsswitch">
+            <span class="locationsswitch-inner"></span>
+            <span class="locationsswitch-switch"></span>
+          </label>
+        </div>
+
+        <select id="choose-team" onChange="mapAffiliatesForTeam()">
+        <option value="Default">Add Affiliate Web ↓</option>
+        <option value="Clear">✖️ Clear Affiliate Webs</option>
+        <option value="Los Angeles Angels of Anaheim">LAA</option>
+        <option value="Houston Astros">HOU</option>
+        <option value="Oakland Athletics">OAK</option>
+        <option value="Toronto Blue Jays">TOR</option>
+        <option value="Atlanta Braves">ATL</option>
+        <option value="Milwaukee Brewers">MIL</option>
+        <option value="St. Louis Cardinals">STL</option>
+        <option value="Chicago Cubs">CHC</option>
+        <option value="Arizona Diamondbacks">ARI</option>
+        <option value="Los Angeles Dodgers">LAD</option>
+        <option value="San Francisco Giants">SF</option>
+        <option value="Cleveland Indians">CLE</option>
+        <option value="Seattle Mariners">SEA</option>
+        <option value="Miami Marlins">MIA</option>
+        <option value="New York Mets">NYM</option>
+        <option value="Washington Nationals">WSH</option>
+        <option value="Baltimore Orioles">BAL</option>
+        <option value="San Diego Padres">SD</option>
+        <option value="Philidelphia Phillies">PHI</option>
+        <option value="Pittsburgh Pirates">PIT</option>
+        <option value="Texas Rangers">TEX</option>
+        <option value="Tampa Bay Rays">TB</option>
+        <option value="Boston Red Sox">BOS</option>
+        <option value="Cincinnati Reds">CIN</option>
+        <option value="Colorado Rockies">COL</option>
+        <option value="Kansas City Royals">KC</option>
+        <option value="Detroit Tigers">DET</option>
+        <option value="Minnesota Twins">MIN</option>
+        <option value="Chicago White Sox">CWS</option>
+        <option value="New York Yankees">NYY</option>
+      </select>
+
+      </div>
+
+    <div id='panel'>
+      <div id="panelHeader">
+        <strong><span id="stadium_name"></span></strong><a style="float:right;" href="#" onClick="$('#panel').hide();">✖️</a><br />
+        <span id="stadium_location"></span><br />
+      </div>
+      <p id="stadium_description"></p>
+    </div>
+
+  </div>
+
+  <div id="map-canvas"></div>
+</body>
+
+</html>
